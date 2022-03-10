@@ -1,11 +1,10 @@
-﻿namespace X12.ImportX12
+namespace X12.ImportX12
 {
     using System;
-    using System.Configuration;
+    using Microsoft.Extensions.Configuration;
     using System.Diagnostics;
     using System.IO;
     using System.Text;
-
     using X12.Parsing;
     using X12.Specifications.Finders;
     using X12.Sql;
@@ -20,30 +19,20 @@
         /// </summary>
         public static void Main()
         {
-            string dsn = ConfigurationManager.ConnectionStrings["X12"].ConnectionString;
-            
-            bool throwExceptionOnSyntaxErrors = ConfigurationManager.AppSettings["ThrowExceptionOnSyntaxErrors"] == "true";
-            string[] segments = ConfigurationManager.AppSettings["IndexedSegments"].Split(',');
-            string parseDirectory = ConfigurationManager.AppSettings["ParseDirectory"];
-            string parseSearchPattern = ConfigurationManager.AppSettings["ParseSearchPattern"];
-            string archiveDirectory = ConfigurationManager.AppSettings["ArchiveDirectory"];
-            string failureDirectory = ConfigurationManager.AppSettings["FailureDirectory"];
-            string sqlDateType = ConfigurationManager.AppSettings["SqlDateType"];
-            int segmentBatchSize = Convert.ToInt32(ConfigurationManager.AppSettings["SqlSegmentBatchSize"]);
-
+            ConfigurationManager configurationManager = new ConfigurationManager();
+            string dsn = configurationManager["X12ConnectionString"];
+            bool throwExceptionOnSyntaxErrors = configurationManager["ThrowExceptionOnSyntaxErrors"] == "true";
+            string[] segments = configurationManager["IndexedSegments"].Split(',');
+            string parseDirectory = configurationManager["ParseDirectory"];
+            string parseSearchPattern = configurationManager["ParseSearchPattern"];
+            string archiveDirectory = configurationManager["ArchiveDirectory"];
+            string failureDirectory = configurationManager["FailureDirectory"];
+            string sqlDateType = configurationManager["SqlDateType"];
+            int segmentBatchSize = Convert.ToInt32(configurationManager["SqlSegmentBatchSize"]);
             var specFinder = new SpecificationFinder();
             var parser = new X12Parser(throwExceptionOnSyntaxErrors);
             parser.ParserWarning += Parser_ParserWarning;
-            var repo = new SqlTransactionRepository(
-                dsn,
-                specFinder,
-                segments,
-                typeof(int),
-                ConfigurationManager.AppSettings["schema"],
-                ConfigurationManager.AppSettings["containerSchema"],
-                segmentBatchSize,
-                sqlDateType);
-
+            var repo = new SqlTransactionRepository(dsn, specFinder, segments, typeof(int), configurationManager["schema"], configurationManager["containerSchema"], segmentBatchSize, sqlDateType);
             foreach (var filename in Directory.GetFiles(parseDirectory, parseSearchPattern, SearchOption.AllDirectories))
             {
                 var header = new byte[6];
@@ -55,14 +44,12 @@
                 }
 
                 Encoding encoding = (header[1] == 0 && header[3] == 0 && header[5] == 0) ? Encoding.Unicode : Encoding.UTF8;
-                
                 var fi = new FileInfo(filename);
                 using (var fs = new FileStream(filename, FileMode.Open, FileAccess.Read))
                 {
                     try
                     {
                         var interchanges = parser.ParseMultiple(fs, encoding);
-                
                         foreach (var interchange in interchanges)
                         {
                             repo.Save(interchange, filename, Environment.UserName);

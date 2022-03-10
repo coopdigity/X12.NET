@@ -1,0 +1,1598 @@
+==========
+References
+==========
+<global namespace>
+X12
+System
+System.Collections
+X12.Shared
+X12.X12Parser
+System.Collections.Specialized
+System.Configuration
+System.IO
+X12.X12Parser.Properties
+X12.Parsing
+System.Text
+X12.Shared.Models
+System.Collections.Generic
+System.Linq
+System.Runtime
+System.CodeDom.Compiler
+System.CodeDom
+System.Diagnostics
+System.Runtime.CompilerServices
+System.Resources
+System.Globalization
+System.Diagnostics.CodeAnalysis
+System.ComponentModel
+System.Reflection
+System.Runtime.InteropServices
+project.all
+X12.Tests
+X12.Tests.Unit
+NUnit
+X12.Specifications
+X12.Tests.Unit.Creation
+NUnit.Framework
+X12.Specifications.Sets
+X12.Specifications.Enumerations
+X12.Shared.Models.TypedSegments
+X12.Shared.Models.TypedLoops
+X12.Shared.Enumerations
+X12.Shared.Models.Typed
+X12.Shared.Models.TypedElements
+X12.Tests.Unit.DocumentationCodeSamples
+X12.Tests.Unit.DocumentationCodeSamples.X12InterchangeModel
+X12.Transformations
+X12.Tests.Unit.ExtensionsTests
+X12.Shared.Attributes
+X12.Shared.Extensions
+System.Xml
+X12.Tests.Unit.Flattening
+System.Xml.Xsl
+X12.Tests.Unit.Parsing
+X12.Specifications.Finders
+System.Xml.XPath
+X12.Tests.Unit.Unbundling
+X12.UnbundleX12
+X12.Hipaa
+X12.Hipaa.ClaimStatus
+System.Xml.Serialization
+X12.Hipaa.Claims
+X12.Hipaa.Common
+X12.Hipaa.Enums
+X12.Hipaa.Claims.Forms
+X12.Hipaa.Claims.Forms.Dental
+X12.Hipaa.Claims.Forms.Institutional
+X12.Hipaa.Claims.Repositories
+X12.Hipaa.Claims.Services
+X12.Hipaa.Claims.Forms.Professional
+X12.Hipaa.Properties
+X12.Hipaa.Eligibility
+X12.Hipaa.Eligibility.Services
+X12.Hipaa.Tests
+X12.Hipaa.Tests.Unit
+X12.Hipaa.Tests.Unit.Claims
+X12.Hipaa.Tests.Unit.Eligibility
+X12.Hipaa.ClaimParser
+Fonet
+X12.Validation
+X12.Specifications.Interfaces
+X12.Validation.Model
+X12.Validation.Tests
+X12.Validation.Tests.Unit
+X12.AcknowledgeX12
+X12.ImportX12
+X12.Sql
+X12.Tests.Integration
+X12.Tests.Integration.Repositories
+System.Data
+System.Data.SqlClient
+X12.Sql.Interfaces
+X12.Sql.IdentityProviders
+X12.Sql.Properties
+X12.TransformToX12
+X12.Shared.Properties
+System.Xml.Schema
+X12.Shared.Models.TypeSegment
+X12.Parsing.Properties
+X12.Specifications.Properties
+System.Collections.Concurrent
+
+===============
+DownloadedFiles
+===============
+system.data.sqlclient.json
+project.all.json
+system.configuration.json
+system.collections.specialized.json
+
+==============
+ProjectResults
+==============
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Transformations\X12.Transformations.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.UnbundleX12\X12.UnbundleX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Validation.Tests.Unit\X12.Validation.Tests.Unit.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Specifications\X12.Specifications.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Tests.Integration\X12.Tests.Integration.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+Microsoft.Data.SqlClient,*
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Tests.Integration\SqlReadOnlyTransactionRepoTester.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Hipaa.Tests.Unit\X12.Hipaa.Tests.Unit.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\X12.Sql.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+Microsoft.Data.SqlClient,*
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\DbCreation.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\Interfaces\IExecutor.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\SegmentBatch.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\SqlReadOnlyTransactionRepository.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\DbValidation.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\IdentityProviders\LongHiLowIdentityProvider.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\SqlTransactionRepository.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\IdentityProviders\IntHiLowIdentityProvider.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\DbExecutor.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Shared\X12.Shared.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Parsing\X12.Parsing.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.TransformToX12\X12.TransformToX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Validation\X12.Validation.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Tests.Unit\X12.Tests.Unit.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa\X12.Hipaa.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa.ClaimParser\X12.Hipaa.ClaimParser.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa.ClaimParser\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 1
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa.ClaimParser\ExecutionOptions.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 1
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.AcknowledgeX12\X12.AcknowledgeX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.AcknowledgeX12\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 7
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.ImportX12\X12.ImportX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.ImportX12\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("ConnectionStrings")
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: MemberAccess
+Action Name: RemoveMemberAccess
+Action Value: 
+Times Run: 2
+Invalid Executions: 0
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 10
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Configuration
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.X12Parser\X12.X12Parser.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.X12Parser\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 3
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.UnbundleX12\X12.UnbundleX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Validation.Tests.Unit\X12.Validation.Tests.Unit.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Hipaa.Tests.Unit\X12.Hipaa.Tests.Unit.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Shared\X12.Shared.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Specifications\X12.Specifications.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.TransformToX12\X12.TransformToX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Validation\X12.Validation.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Parsing\X12.Parsing.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa\X12.Hipaa.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Transformations\X12.Transformations.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Tests.Integration\X12.Tests.Integration.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+Microsoft.Data.SqlClient,*
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Tests.Integration\SqlReadOnlyTransactionRepoTester.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa.ClaimParser\X12.Hipaa.ClaimParser.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa.ClaimParser\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 1
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Hipaa.ClaimParser\ExecutionOptions.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 1
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\tests\X12.Tests.Unit\X12.Tests.Unit.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.X12Parser\X12.X12Parser.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.X12Parser\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 3
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.AcknowledgeX12\X12.AcknowledgeX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.AcknowledgeX12\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 7
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.ImportX12\X12.ImportX12.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.ImportX12\Program.cs
+---------------------------
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("ConnectionStrings")
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: MemberAccess
+Action Name: RemoveMemberAccess
+Action Value: 
+Times Run: 2
+Invalid Executions: 0
+
+Action Type: ElementAccess
+Action Name: ReplaceElementAccess
+Action Value: ConfigurationManager.Configuration.GetSection("appSettings")
+Times Run: 10
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Configuration
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\X12.Sql.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net6.0
+---------------------------
+Upgrade packages:
+---------------------------
+---------------------------
+Action packages:
+---------------------------
+Microsoft.Data.SqlClient,*
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\DbCreation.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\Interfaces\IExecutor.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\SegmentBatch.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\SqlReadOnlyTransactionRepository.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\DbValidation.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\IdentityProviders\LongHiLowIdentityProvider.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\SqlTransactionRepository.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\IdentityProviders\IntHiLowIdentityProvider.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+---------------------------
+Executed Actions for file: C:\Users\jerem\repos\oss\X12.NET\src\X12.Sql\DbExecutor.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.Data.SqlClient
+Times Run: 1
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Data.SqlClient
+Times Run: 1
+Invalid Executions: 1
+
+
+
+===========
+BuildErrors
+===========
+
+

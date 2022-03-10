@@ -1,4 +1,6 @@
-﻿namespace X12.Sql
+using Microsoft.Data.SqlClient;
+
+namespace X12.Sql
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +8,6 @@
     using System.Data.SqlClient;
     using System.Diagnostics;
     using System.Linq;
-    
     using X12.Shared.Models;
     using X12.Specifications;
     using X12.Specifications.Enumerations;
@@ -28,49 +29,37 @@
         private readonly int batchSize;
         private readonly IIdentityProvider idProvider;
         private bool schemaEnsured;
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlTransactionRepository"/> class
+        /// Initializes a new instance of the <see cref = "SqlTransactionRepository"/> class
         /// </summary>
-        /// <param name="dsn">Data source information</param>
-        /// <param name="identityType">Identity type</param>
-        public SqlTransactionRepository(string dsn, Type identityType)
-            : this(dsn, new SpecificationFinder(), new[] { "REF", "NM1", "N1", "N3", "N4", "DMG", "PER" }, identityType, "dbo")
+        /// <param name = "dsn">Data source information</param>
+        /// <param name = "identityType">Identity type</param>
+        public SqlTransactionRepository(string dsn, Type identityType): this(dsn, new SpecificationFinder(), new[]{"REF", "NM1", "N1", "N3", "N4", "DMG", "PER"}, identityType, "dbo")
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlTransactionRepository"/> class
+        /// Initializes a new instance of the <see cref = "SqlTransactionRepository"/> class
         /// </summary>
-        /// <param name="dsn">Data source information</param>
-        /// <param name="schema">Database schema for data access</param>
-        /// <param name="identityType">Identity type</param>
-        public SqlTransactionRepository(string dsn, string schema, Type identityType)
-            : this(dsn, new SpecificationFinder(), new[] { "REF", "NM1", "N1", "N3", "N4", "DMG", "PER" }, identityType, schema)
+        /// <param name = "dsn">Data source information</param>
+        /// <param name = "schema">Database schema for data access</param>
+        /// <param name = "identityType">Identity type</param>
+        public SqlTransactionRepository(string dsn, string schema, Type identityType): this(dsn, new SpecificationFinder(), new[]{"REF", "NM1", "N1", "N3", "N4", "DMG", "PER"}, identityType, schema)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlTransactionRepository"/> class
+        /// Initializes a new instance of the <see cref = "SqlTransactionRepository"/> class
         /// </summary>
-        /// <param name="dsn">Data source information</param>
-        /// <param name="specFinder">Specification finder for data structure information</param>
-        /// <param name="indexedSegments">Segments stored in database</param>
-        /// <param name="identityType">Identity type</param>
-        /// <param name="schema">Database schema for data access</param>
-        /// <param name="commonSchema">Common database schema</param>
-        /// <param name="segmentBatchSize">Number of segments to pull from database at a time</param>
-        /// <param name="sqlDateType">"Date" type used by database</param>
-        public SqlTransactionRepository(
-            string dsn,
-            ISpecificationFinder specFinder,
-            string[] indexedSegments,
-            Type identityType,
-            string schema = "dbo",
-            string commonSchema = "dbo",
-            int segmentBatchSize = 1000,
-            string sqlDateType = "date")
-            : base(dsn, identityType, schema)
+        /// <param name = "dsn">Data source information</param>
+        /// <param name = "specFinder">Specification finder for data structure information</param>
+        /// <param name = "indexedSegments">Segments stored in database</param>
+        /// <param name = "identityType">Identity type</param>
+        /// <param name = "schema">Database schema for data access</param>
+        /// <param name = "commonSchema">Common database schema</param>
+        /// <param name = "segmentBatchSize">Number of segments to pull from database at a time</param>
+        /// <param name = "sqlDateType">"Date" type used by database</param>
+        public SqlTransactionRepository(string dsn, ISpecificationFinder specFinder, string[] indexedSegments, Type identityType, string schema = "dbo", string commonSchema = "dbo", int segmentBatchSize = 1000, string sqlDateType = "date"): base(dsn, identityType, schema)
         {
             this.CommonDb = new DbCreation(dsn, commonSchema, identityType, sqlDateType);
             this.TransactionDb = new DbCreation(dsn, schema, identityType, sqlDateType);
@@ -207,31 +196,20 @@
 
                     foreach (var element in spec.Elements)
                     {
-                        if (element.Type == ElementDataType.Identifier
-                            && !string.IsNullOrEmpty(element.QualifierSetId)
-                            && element.AllowedIdentifiers.Count > 0)
+                        if (element.Type == ElementDataType.Identifier && !string.IsNullOrEmpty(element.QualifierSetId) && element.AllowedIdentifiers.Count > 0)
                         {
                             if (this.CommonDb.ElementCountInX12CodeListTable(element.QualifierSetId) == 0)
                             {
                                 foreach (var identifier in element.AllowedIdentifiers)
                                 {
-                                    this.CommonDb.AddToX12CodeListTable(
-                                        element.QualifierSetId,
-                                        identifier.ID,
-                                        identifier.Description);
+                                    this.CommonDb.AddToX12CodeListTable(element.QualifierSetId, identifier.ID, identifier.Description);
                                 }
                             }
                         }
                     }
                 }
 
-                if (!this.TransactionDb.Validator.ViewExists("Entity")
-                    && this.specs.ContainsKey("NM1")
-                    && this.specs.ContainsKey("N1")
-                    && this.specs.ContainsKey("N3")
-                    && this.specs.ContainsKey("N4")
-                    && this.specs.ContainsKey("PER")
-                    && this.specs.ContainsKey("DMG"))
+                if (!this.TransactionDb.Validator.ViewExists("Entity") && this.specs.ContainsKey("NM1") && this.specs.ContainsKey("N1") && this.specs.ContainsKey("N3") && this.specs.ContainsKey("N4") && this.specs.ContainsKey("PER") && this.specs.ContainsKey("DMG"))
                 {
                     this.TransactionDb.CreateEntityView(this.CommonDb.Schema);
                 }
@@ -275,79 +253,49 @@
         ///     Saves the entire interchange into the database as individual segments and the relationships between the segments
         ///     and loops
         /// </summary>
-        /// <param name="interchange">The parsed interchange object</param>
-        /// <param name="filename">Name of file to save to</param>
-        /// <param name="userName">Username used to access file</param>
+        /// <param name = "interchange">The parsed interchange object</param>
+        /// <param name = "filename">Name of file to save to</param>
+        /// <param name = "userName">Username used to access file</param>
         /// <returns>The interchangeId from the database</returns>
         public object Save(Interchange interchange, string filename, string userName)
         {
             this.EnsureSchema();
             var positionInInterchange = 1;
-
             var interchangeId = this.SaveInterchange(interchange, filename, userName);
             try
             {
                 this.SaveSegment(null, interchange, positionInInterchange, interchangeId);
-
                 foreach (var fg in interchange.FunctionGroups)
                 {
                     var functionalGroupId = this.SaveFunctionalGroup(fg, interchangeId);
                     this.SaveSegment(null, fg, ++positionInInterchange, interchangeId, functionalGroupId);
-
                     foreach (Transaction tran in fg.Transactions)
                     {
                         string transactionSetCode = tran.IdentifierCode;
                         var transactionSetId = this.SaveTransactionSet(tran, interchangeId, functionalGroupId);
                         this.SaveSegment(null, tran, ++positionInInterchange, interchangeId, functionalGroupId, transactionSetId);
-
                         foreach (Segment seg in tran.Segments)
                         {
                             if (seg is HierarchicalLoopContainer hlContainer)
                             {
                                 positionInInterchange++;
-                                this.SaveLoopAndChildren(
-                                    hlContainer,
-                                    ref positionInInterchange,
-                                    interchangeId,
-                                    functionalGroupId,
-                                    transactionSetId,
-                                    transactionSetCode,
-                                    null);
+                                this.SaveLoopAndChildren(hlContainer, ref positionInInterchange, interchangeId, functionalGroupId, transactionSetId, transactionSetCode, null);
                             }
                             else
                             {
-                                this.SaveSegment(
-                                    null,
-                                    seg,
-                                    ++positionInInterchange,
-                                    interchangeId,
-                                    functionalGroupId,
-                                    transactionSetId);
+                                this.SaveSegment(null, seg, ++positionInInterchange, interchangeId, functionalGroupId, transactionSetId);
                             }
                         }
 
                         foreach (HierarchicalLoop hl in tran.HLoops)
                         {
                             positionInInterchange++;
-                            this.SaveLoopAndChildren(
-                                hl,
-                                ref positionInInterchange,
-                                interchangeId,
-                                functionalGroupId,
-                                transactionSetId,
-                                transactionSetCode,
-                                null);
+                            this.SaveLoopAndChildren(hl, ref positionInInterchange, interchangeId, functionalGroupId, transactionSetId, transactionSetCode, null);
                         }
 
                         foreach (Segment seg in tran.TrailerSegments)
                         {
-                            this.SaveSegment(
-                                null,
-                                seg,
-                                ++positionInInterchange,
-                                interchangeId,
-                                functionalGroupId,
-                                transactionSetId);
+                            this.SaveSegment(null, seg, ++positionInInterchange, interchangeId, functionalGroupId, transactionSetId);
                         }
                     }
 
@@ -377,12 +325,12 @@
         ///     The update is stored as inserts into the database, and only the most current revision that hasn't been deleted is
         ///     returned on the next retrieval
         /// </summary>
-        /// <param name="segments">
+        /// <param name = "segments">
         ///     The segments to be updated, only segments with a different SegmentString or Deleted value will
         ///     be updated
         /// </param>
-        /// <param name="comments">The reason for the revision</param>
-        /// <param name="revisedBy">Ther username of the user who has made the revision</param>
+        /// <param name = "comments">The reason for the revision</param>
+        /// <param name = "revisedBy">Ther username of the user who has made the revision</param>
         /// <returns>Revision identifier generated from save</returns>
         public int SaveRevision(IList<RepoSegment> segments, string comments, string revisedBy)
         {
@@ -393,30 +341,15 @@
                 var sqlTran = conn.BeginTransaction();
                 try
                 {
-                    var sql = $"INSERT INTO [{this.Schema}].[Revision] (SchemaName,Comments,RevisionDate,RevisedBy)"
-                        + "VALUES (@schemaName, @comments, getdate(), @revisedBy)"
-                        + "SELECT scope_identity()";
-
+                    var sql = $"INSERT INTO [{this.Schema}].[Revision] (SchemaName,Comments,RevisionDate,RevisedBy)" + "VALUES (@schemaName, @comments, getdate(), @revisedBy)" + "SELECT scope_identity()";
                     var cmd = new SqlCommand(sql, conn, sqlTran);
                     cmd.Parameters.AddWithValue("@schemaName", this.Schema);
                     cmd.Parameters.AddWithValue("@comments", comments);
                     cmd.Parameters.AddWithValue("@revisedBy", revisedBy);
                     revisionId = Convert.ToInt32(this.ExecuteScalar(cmd));
-
                     foreach (var segment in segments)
                     {
-                        this.SaveSegment(
-                            sqlTran,
-                            segment.Segment,
-                            segment.PositionInInterchange,
-                            segment.InterchangeId,
-                            segment.FunctionalGroupId,
-                            segment.TransactionSetId,
-                            segment.ParentLoopId,
-                            segment.LoopId,
-                            revisionId,
-                            segment.RevisionId,
-                            segment.Deleted);
+                        this.SaveSegment(sqlTran, segment.Segment, segment.PositionInInterchange, segment.InterchangeId, segment.FunctionalGroupId, segment.TransactionSetId, segment.ParentLoopId, segment.LoopId, revisionId, segment.RevisionId, segment.Deleted);
                     }
 
                     sqlTran.Commit();
@@ -434,38 +367,28 @@
         /// <summary>
         /// Stores the parsing error into the database
         /// </summary>
-        /// <param name="interchangeId">ID of <see cref="Interchange"/> with warning</param>
-        /// <param name="positionInInterchange">Place in interchange where warning occurred</param>
-        /// <param name="revisionId">ID of revision warning was thrown in</param>
-        /// <param name="errorMessage">Message to be stored for the warning</param>
+        /// <param name = "interchangeId">ID of <see cref = "Interchange"/> with warning</param>
+        /// <param name = "positionInInterchange">Place in interchange where warning occurred</param>
+        /// <param name = "revisionId">ID of revision warning was thrown in</param>
+        /// <param name = "errorMessage">Message to be stored for the warning</param>
         /// <returns>Returns the ID of the error stored</returns>
-        public object PersistParsingError(
-            object interchangeId,
-            int positionInInterchange,
-            int? revisionId,
-            string errorMessage)
+        public object PersistParsingError(object interchangeId, int positionInInterchange, int? revisionId, string errorMessage)
         {
             var errorId = this.idProvider.NextId(this.Schema, "ParsingError");
-
-            var cmd = new SqlCommand(
-                    $"INSERT INTO [{this.Schema}].ParsingError (Id, InterchangeId,PositionInInterchange,RevisionId,Message)\n"
-                    + "VALUES (@id, @interchangeId, @positionInInterchange, @revisionId, @message)");
-
+            var cmd = new SqlCommand($"INSERT INTO [{this.Schema}].ParsingError (Id, InterchangeId,PositionInInterchange,RevisionId,Message)\n" + "VALUES (@id, @interchangeId, @positionInInterchange, @revisionId, @message)");
             cmd.Parameters.AddWithValue("@id", errorId);
             cmd.Parameters.AddWithValue("@interchangeId", interchangeId);
             cmd.Parameters.AddWithValue("@positionInInterchange", positionInInterchange);
             cmd.Parameters.AddWithValue("@revisionId", revisionId ?? 0);
             cmd.Parameters.AddWithValue("@message", errorMessage);
-
             this.ExecuteCmd(cmd);
-
             return errorId;
         }
 
         /// <summary>
-        /// Executes a segment batch with the provided <see cref="SqlTransaction"/>
+        /// Executes a segment batch with the provided <see cref = "SqlTransaction"/>
         /// </summary>
-        /// <param name="tran">SQL Transaction to be executed</param>
+        /// <param name = "tran">SQL Transaction to be executed</param>
         internal virtual void ExecuteBatch(SqlTransaction tran)
         {
             if (this.SegmentBatch.LoopCount > 0)
@@ -482,12 +405,10 @@
                         using (var sbc = new SqlBulkCopy(conn))
                         {
                             sbc.DestinationTableName = $"[{this.CommonDb.Schema}].[Container]";
-
                             var containerTable = new DataTable();
                             containerTable.Columns.Add("Id", this.IdentityType);
                             containerTable.Columns.Add("SchemaName", typeof(string));
                             containerTable.Columns.Add("Type", typeof(string));
-
                             foreach (DataRow row in this.SegmentBatch.LoopTable.Rows)
                             {
                                 var containerId = this.idProvider.NextId(this.CommonDb.Schema, "Container");
@@ -519,11 +440,7 @@
                 catch (Exception exc)
                 {
                     Trace.WriteLine(exc.Message);
-                    Trace.TraceInformation(
-                        "Error Saving {0} loops to db starting with {1}.",
-                        this.SegmentBatch.LoopCount,
-                        this.SegmentBatch.StartingSegment);
-
+                    Trace.TraceInformation("Error Saving {0} loops to db starting with {1}.", this.SegmentBatch.LoopCount, this.SegmentBatch.StartingSegment);
                     throw;
                 }
             }
@@ -548,11 +465,9 @@
                             }
 
                             sbc.WriteToServer(this.SegmentBatch.SegmentTable);
-
                             foreach (KeyValuePair<string, DataTable> pair in this.SegmentBatch.ParsedTables)
                             {
                                 sbc.ColumnMappings.Clear();
-
                                 sbc.DestinationTableName = $"[{this.Schema}].[{pair.Key}]";
                                 foreach (DataColumn c in pair.Value.Columns)
                                 {
@@ -569,11 +484,7 @@
                 catch (Exception exc)
                 {
                     Trace.WriteLine(exc.Message);
-                    Trace.TraceInformation(
-                        "Error Saving {0} segments to db starting with {1}.",
-                        this.SegmentBatch.SegmentCount,
-                        this.SegmentBatch.StartingSegment);
-
+                    Trace.TraceInformation("Error Saving {0} segments to db starting with {1}.", this.SegmentBatch.SegmentCount, this.SegmentBatch.StartingSegment);
                     throw;
                 }
             }
@@ -582,16 +493,16 @@
         /// <summary>
         /// Executed the provided command agains the TransactionDb
         /// </summary>
-        /// <param name="cmd">SQL command being executed</param>
+        /// <param name = "cmd">SQL command being executed</param>
         protected void ExecuteCmd(SqlCommand cmd)
         {
             this.TransactionDb.Executor.ExecuteCmd(cmd);
         }
 
         /// <summary>
-        /// Executes the provided <see cref="SqlCommand"/> and returns the result
+        /// Executes the provided <see cref = "SqlCommand"/> and returns the result
         /// </summary>
-        /// <param name="cmd">SQL Command to be executed</param>
+        /// <param name = "cmd">SQL Command to be executed</param>
         /// <returns>Result of the command execution</returns>
         protected object ExecuteScalar(SqlCommand cmd)
         {
@@ -601,35 +512,31 @@
         /// <summary>
         /// Builds the SQL command to insert the provided segment ID into the database
         /// </summary>
-        /// <param name="segmentId"><see cref="Segment"/> identifier to insert</param>
+        /// <param name = "segmentId"><see cref = "Segment"/> identifier to insert</param>
         /// <returns>SQL string query</returns>
         protected virtual string GetContainerIdSql(string segmentId)
         {
-            return string.Format(
-                @"INSERT INTO [{1}].[Container] (Id, SchemaName, Type) VALUES (@containerId, '{0}','{2}');",
-                this.Schema,
-                this.CommonDb.Schema,
-                segmentId);
+            return string.Format(@"INSERT INTO [{1}].[Container] (Id, SchemaName, Type) VALUES (@containerId, '{0}','{2}');", this.Schema, this.CommonDb.Schema, segmentId);
         }
 
         /// <summary>
-        /// Gets the Entity type code from the provided <see cref="Loop"/>
+        /// Gets the Entity type code from the provided <see cref = "Loop"/>
         /// </summary>
-        /// <param name="loop">Loop to obtain the Entity type code from</param>
+        /// <param name = "loop">Loop to obtain the Entity type code from</param>
         /// <returns>Entity type code, if present; otherwise null</returns>
         protected virtual string GetEntityTypeCode(Loop loop)
         {
-            if (new[] { "CLI", "CUR", "G18", "MRC", "N1", "NM1", "NX1", "RDI" }.Contains(loop.SegmentId))
+            if (new[]{"CLI", "CUR", "G18", "MRC", "N1", "NM1", "NX1", "RDI"}.Contains(loop.SegmentId))
             {
                 return loop.GetElement(1);
             }
 
-            if (new[] { "ENT", "LCD", "NX1", "PLA", "PT" }.Contains(loop.SegmentId))
+            if (new[]{"ENT", "LCD", "NX1", "PLA", "PT"}.Contains(loop.SegmentId))
             {
                 return loop.GetElement(2);
             }
 
-            if (new[] { "IN1", "NX1", "SCH" }.Contains(loop.SegmentId))
+            if (new[]{"IN1", "NX1", "SCH"}.Contains(loop.SegmentId))
             {
                 return loop.GetElement(3);
             }
@@ -640,110 +547,55 @@
         /// <summary>
         /// Returns SQL command to insert the provided Loop data
         /// </summary>
-        /// <param name="id">Loop ID</param>
-        /// <param name="loop">Loop object with additional metadata to be inserted</param>
-        /// <param name="interchangeId">Interchange ID</param>
-        /// <param name="transactionSetId">Transaction set ID</param>
-        /// <param name="transactionSetCode">Transaction set code</param>
-        /// <param name="parentLoopId">Parent Loop ID</param>
+        /// <param name = "id">Loop ID</param>
+        /// <param name = "loop">Loop object with additional metadata to be inserted</param>
+        /// <param name = "interchangeId">Interchange ID</param>
+        /// <param name = "transactionSetId">Transaction set ID</param>
+        /// <param name = "transactionSetCode">Transaction set code</param>
+        /// <param name = "parentLoopId">Parent Loop ID</param>
         /// <returns>String containing SQL command with provided data inserted</returns>
-        protected string GetSaveLoopSql(
-            object id,
-            Loop loop,
-            object interchangeId,
-            object transactionSetId,
-            string transactionSetCode,
-            object parentLoopId)
+        protected string GetSaveLoopSql(object id, Loop loop, object interchangeId, object transactionSetId, string transactionSetCode, object parentLoopId)
         {
             string entityIdentifierCode = this.GetEntityTypeCode(loop);
-
-            return string.Format(
-@"INSERT INTO [{0}].[Loop] (Id, ParentLoopId, InterchangeId, TransactionSetId, TransactionSetCode, SpecLoopId, StartingSegmentId, EntityIdentifierCode)
-VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
-                this.Schema,
-                id,
-                parentLoopId == this.DefaultIdentityTypeValue ? "NULL" : $"'{parentLoopId}'",
-                interchangeId,
-                transactionSetId,
-                transactionSetCode,
-                loop.Specification.LoopId,
-                loop.SegmentId,
-                entityIdentifierCode == null ? "NULL" : $"'{entityIdentifierCode}'");
+            return string.Format(@"INSERT INTO [{0}].[Loop] (Id, ParentLoopId, InterchangeId, TransactionSetId, TransactionSetCode, SpecLoopId, StartingSegmentId, EntityIdentifierCode)
+VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ", this.Schema, id, parentLoopId == this.DefaultIdentityTypeValue ? "NULL" : $"'{parentLoopId}'", interchangeId, transactionSetId, transactionSetCode, loop.Specification.LoopId, loop.SegmentId, entityIdentifierCode == null ? "NULL" : $"'{entityIdentifierCode}'");
         }
-
 
         /// <summary>
         /// Saves the loop data to the SegmentBatch
         /// </summary>
-        /// <param name="loop">Loop object with additional metadata to be inserted</param>
-        /// <param name="interchangeId">Interchange ID</param>
-        /// <param name="transactionSetId">Transaction set ID</param>
-        /// <param name="transactionSetCode">Transaction set code</param>
-        /// <param name="parentLoopId">Parent Loop ID</param>
+        /// <param name = "loop">Loop object with additional metadata to be inserted</param>
+        /// <param name = "interchangeId">Interchange ID</param>
+        /// <param name = "transactionSetId">Transaction set ID</param>
+        /// <param name = "transactionSetCode">Transaction set code</param>
+        /// <param name = "parentLoopId">Parent Loop ID</param>
         /// <returns>Id generated by the ID Provider</returns>
-        protected virtual object SaveLoop(
-            Loop loop,
-            object interchangeId,
-            object transactionSetId,
-            string transactionSetCode,
-            object parentLoopId)
+        protected virtual object SaveLoop(Loop loop, object interchangeId, object transactionSetId, string transactionSetCode, object parentLoopId)
         {
             var id = this.idProvider.NextId(this.Schema, "Loop");
-
-            this.SegmentBatch.AddLoop(
-                id,
-                loop,
-                interchangeId,
-                transactionSetId != this.DefaultIdentityTypeValue ? transactionSetId : null,
-                transactionSetCode,
-                parentLoopId != this.DefaultIdentityTypeValue ? parentLoopId : null,
-                this.GetEntityTypeCode(loop));
-
+            this.SegmentBatch.AddLoop(id, loop, interchangeId, transactionSetId != this.DefaultIdentityTypeValue ? transactionSetId : null, transactionSetCode, parentLoopId != this.DefaultIdentityTypeValue ? parentLoopId : null, this.GetEntityTypeCode(loop));
             return id;
         }
 
         /// <summary>
-        /// Saves <see cref="Segment"/> information to SegmentBatch
+        /// Saves <see cref = "Segment"/> information to SegmentBatch
         /// </summary>
-        /// <param name="tran"><see cref="Transaction"/> information to be saved</param>
-        /// <param name="segment">Segment information to be saved</param>
-        /// <param name="positionInInterchange">Segment position in interchange</param>
-        /// <param name="interchangeId">Interchange ID</param>
-        /// <param name="functionalGroupId">FunctionalGroup ID</param>
-        /// <param name="transactionSetId">Transaction Set ID segment belongs to</param>
-        /// <param name="parentLoopId">Parent Loop ID for segment</param>
-        /// <param name="loopId">Loop ID</param>
-        /// <param name="revisionId">Revision ID</param>
-        /// <param name="previousRevisionId">Previous revision ID</param>
-        /// <param name="deleted">Flag if segment is deleted</param>
-        protected virtual void SaveSegment(
-            SqlTransaction tran,
-            DetachedSegment segment,
-            int positionInInterchange,
-            object interchangeId,
-            object functionalGroupId = null,
-            object transactionSetId = null,
-            object parentLoopId = null,
-            object loopId = null,
-            int? revisionId = null,
-            int? previousRevisionId = null,
-            bool deleted = false)
+        /// <param name = "tran"><see cref = "Transaction"/> information to be saved</param>
+        /// <param name = "segment">Segment information to be saved</param>
+        /// <param name = "positionInInterchange">Segment position in interchange</param>
+        /// <param name = "interchangeId">Interchange ID</param>
+        /// <param name = "functionalGroupId">FunctionalGroup ID</param>
+        /// <param name = "transactionSetId">Transaction Set ID segment belongs to</param>
+        /// <param name = "parentLoopId">Parent Loop ID for segment</param>
+        /// <param name = "loopId">Loop ID</param>
+        /// <param name = "revisionId">Revision ID</param>
+        /// <param name = "previousRevisionId">Previous revision ID</param>
+        /// <param name = "deleted">Flag if segment is deleted</param>
+        protected virtual void SaveSegment(SqlTransaction tran, DetachedSegment segment, int positionInInterchange, object interchangeId, object functionalGroupId = null, object transactionSetId = null, object parentLoopId = null, object loopId = null, int? revisionId = null, int? previousRevisionId = null, bool deleted = false)
         {
             if (!revisionId.HasValue || this.SegmentHasChanged(segment, positionInInterchange, interchangeId, previousRevisionId) || deleted)
             {
-                this.SegmentBatch.AddSegment(
-                    tran,
-                    interchangeId,
-                    positionInInterchange,
-                    revisionId ?? 0,
-                    this.ConvertT(functionalGroupId),
-                    this.ConvertT(transactionSetId),
-                    this.ConvertT(parentLoopId),
-                    this.ConvertT(loopId),
-                    deleted,
-                    segment,
-                    this.specs.ContainsKey(segment.SegmentId) ? this.specs[segment.SegmentId] : null);
-
+                this.SegmentBatch.AddSegment(tran, interchangeId, positionInInterchange, revisionId ?? 0, this.ConvertT(functionalGroupId), this.ConvertT(transactionSetId), this.ConvertT(parentLoopId), this.ConvertT(loopId), deleted, segment, this.specs.ContainsKey(segment.SegmentId) ? this.specs[segment.SegmentId] : null);
                 if (tran != null || this.SegmentBatch.SegmentTable.Rows.Count >= this.batchSize)
                 {
                     this.ExecuteBatch(tran);
@@ -776,24 +628,12 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             return new IntHiLowIdentityProvider(dsn, commonSchema, segmentBatchSize);
         }
 
-        private object SaveLoopAndChildren(
-            HierarchicalLoopContainer loop,
-            ref int positionInInterchange,
-            object interchangeId,
-            object functionalGroupId,
-            object transactionSetId,
-            string transactionSetCode,
-            object parentId)
+        private object SaveLoopAndChildren(HierarchicalLoopContainer loop, ref int positionInInterchange, object interchangeId, object functionalGroupId, object transactionSetId, string transactionSetCode, object parentId)
         {
             object loopId = null;
             if (loop is HierarchicalLoop hLoop)
             {
-                loopId = this.SaveHierarchicalLoop(
-                    hLoop,
-                    interchangeId,
-                    transactionSetId,
-                    transactionSetCode,
-                    parentId);
+                loopId = this.SaveHierarchicalLoop(hLoop, interchangeId, transactionSetId, transactionSetCode, parentId);
             }
             else if (loop is Loop loopContainer)
             {
@@ -802,58 +642,27 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
 
             if (loopId == null || loopId == this.DefaultIdentityTypeValue)
             {
-                throw new InvalidOperationException(
-                    string.Format(Resources.LoopCreationError, interchangeId, positionInInterchange));
+                throw new InvalidOperationException(string.Format(Resources.LoopCreationError, interchangeId, positionInInterchange));
             }
 
-            this.SaveSegment(
-                null,
-                loop,
-                positionInInterchange,
-                interchangeId,
-                functionalGroupId,
-                transactionSetId,
-                parentId,
-                loopId);
-
+            this.SaveSegment(null, loop, positionInInterchange, interchangeId, functionalGroupId, transactionSetId, parentId, loopId);
             foreach (var seg in loop.Segments)
             {
                 if (seg is HierarchicalLoopContainer hierarchicalLoopContainer)
                 {
                     positionInInterchange++;
-                    this.SaveLoopAndChildren(
-                        hierarchicalLoopContainer,
-                        ref positionInInterchange,
-                        interchangeId,
-                        functionalGroupId,
-                        transactionSetId,
-                        transactionSetCode,
-                        loopId);
+                    this.SaveLoopAndChildren(hierarchicalLoopContainer, ref positionInInterchange, interchangeId, functionalGroupId, transactionSetId, transactionSetCode, loopId);
                 }
                 else
                 {
-                    this.SaveSegment(
-                        null,
-                        seg,
-                        ++positionInInterchange,
-                        interchangeId,
-                        functionalGroupId,
-                        transactionSetId,
-                        loopId);
+                    this.SaveSegment(null, seg, ++positionInInterchange, interchangeId, functionalGroupId, transactionSetId, loopId);
                 }
             }
 
             foreach (var hl in loop.HLoops)
             {
                 positionInInterchange++;
-                this.SaveLoopAndChildren(
-                    hl,
-                    ref positionInInterchange,
-                    interchangeId,
-                    functionalGroupId,
-                    transactionSetId,
-                    transactionSetCode,
-                    loopId);
+                this.SaveLoopAndChildren(hl, ref positionInInterchange, interchangeId, functionalGroupId, transactionSetId, transactionSetCode, loopId);
             }
 
             return loopId;
@@ -861,8 +670,7 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
 
         private void MarkInterchangeWithError(object interchangeId)
         {
-            var cmd =
-                new SqlCommand($"UPDATE [{this.Schema}].Interchange SET HasError = 1 WHERE Id = @interchangeId");
+            var cmd = new SqlCommand($"UPDATE [{this.Schema}].Interchange SET HasError = 1 WHERE Id = @interchangeId");
             cmd.Parameters.AddWithValue("@interchangeId", interchangeId);
             this.ExecuteCmd(cmd);
         }
@@ -870,28 +678,18 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
         private object SaveInterchange(Interchange interchange, string filename, string userName)
         {
             var date = DateTime.MaxValue;
-
             try
             {
                 date = interchange.InterchangeDate;
             }
             catch (Exception exc)
             {
-                Trace.TraceWarning(
-                    Resources.InterchangeDateTimeParsingError,
-                    interchange.GetElement(9),
-                    interchange.GetElement(10),
-                    exc.Message);
+                Trace.TraceWarning(Resources.InterchangeDateTimeParsingError, interchange.GetElement(9), interchange.GetElement(10), exc.Message);
             }
 
             var interchangeId = this.idProvider.NextId(this.Schema, "Interchange");
             var containerId = this.idProvider.NextId(this.CommonDb.Schema, "Container");
-
-            var cmd = new SqlCommand(
-                this.GetContainerIdSql("ISA")
-                + $"INSERT INTO [{this.Schema}].[Interchange] (Id, SenderId, ReceiverId, ControlNumber, [Date], SegmentTerminator, ElementSeparator, ComponentSeparator, Filename, HasError, CreatedBy, CreatedDate)\n"
-                + "VALUES (@id, @senderId, @receiverId, @controlNumber, @date, @segmentTerminator, @elementSeparator, @componentSeparator, @filename, 0, @createdBy, getdate())");
-
+            var cmd = new SqlCommand(this.GetContainerIdSql("ISA") + $"INSERT INTO [{this.Schema}].[Interchange] (Id, SenderId, ReceiverId, ControlNumber, [Date], SegmentTerminator, ElementSeparator, ComponentSeparator, Filename, HasError, CreatedBy, CreatedDate)\n" + "VALUES (@id, @senderId, @receiverId, @controlNumber, @date, @segmentTerminator, @elementSeparator, @componentSeparator, @filename, 0, @createdBy, getdate())");
             cmd.Parameters.AddWithValue("@id", interchangeId);
             cmd.Parameters.AddWithValue("@containerId", containerId);
             cmd.Parameters.AddWithValue("@senderId", interchange.InterchangeSenderId);
@@ -903,9 +701,7 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             cmd.Parameters.AddWithValue("@componentSeparator", interchange.Delimiters.SubElementSeparator);
             cmd.Parameters.AddWithValue("@filename", filename);
             cmd.Parameters.AddWithValue("@createdBy", userName);
-
             this.ExecuteCmd(cmd);
-
             return interchangeId;
         }
 
@@ -915,7 +711,6 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             var date = DateTime.MaxValue;
             int controlNumber = 0;
             string version;
-
             if (functionGroup.FunctionalIdentifierCode.Length <= 2)
             {
                 idCode = functionGroup.FunctionalIdentifierCode;
@@ -923,9 +718,7 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             else
             {
                 idCode = functionGroup.FunctionalIdentifierCode.Substring(0, 2);
-                Trace.TraceWarning(
-                    Resources.FunctionalIdentifierTruncatedWarning,
-                    functionGroup.FunctionalIdentifierCode);
+                Trace.TraceWarning(Resources.FunctionalIdentifierTruncatedWarning, functionGroup.FunctionalIdentifierCode);
             }
 
             try
@@ -934,11 +727,7 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             }
             catch (Exception exc)
             {
-                Trace.TraceWarning(
-                    Resources.FunctionalGroupDateTimeParsingError,
-                    functionGroup.GetElement(4),
-                    functionGroup.GetElement(5),
-                    exc.Message);
+                Trace.TraceWarning(Resources.FunctionalGroupDateTimeParsingError, functionGroup.GetElement(4), functionGroup.GetElement(5), exc.Message);
             }
 
             try
@@ -947,10 +736,7 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             }
             catch (Exception exc)
             {
-                Trace.TraceWarning(
-                    Resources.FunctionalGroupControlNumberParsingError,
-                    functionGroup.GetElement(6),
-                    exc.Message);
+                Trace.TraceWarning(Resources.FunctionalGroupControlNumberParsingError, functionGroup.GetElement(6), exc.Message);
             }
 
             if (functionGroup.VersionIdentifierCode.Length <= 12)
@@ -960,19 +746,12 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             else
             {
                 version = functionGroup.VersionIdentifierCode.Substring(0, 12);
-                Trace.TraceWarning(
-                    Resources.FunctionalGroupVersionNumberTruncatedWarning,
-                    functionGroup.VersionIdentifierCode);
+                Trace.TraceWarning(Resources.FunctionalGroupVersionNumberTruncatedWarning, functionGroup.VersionIdentifierCode);
             }
 
             var functionalGroupId = this.idProvider.NextId(this.Schema, "FunctionalGroup");
             var containerId = this.idProvider.NextId(this.CommonDb.Schema, "Container");
-
-            var cmd = new SqlCommand(
-                this.GetContainerIdSql("GS") 
-                + $"INSERT INTO [{this.Schema}].[FunctionalGroup] (Id, InterchangeId, FunctionalIdCode, Date, ControlNumber, Version)\n"
-                + "VALUES (@id, @interchangeId, @functionalIdCode, @date, @controlNumber, @version)");
-
+            var cmd = new SqlCommand(this.GetContainerIdSql("GS") + $"INSERT INTO [{this.Schema}].[FunctionalGroup] (Id, InterchangeId, FunctionalIdCode, Date, ControlNumber, Version)\n" + "VALUES (@id, @interchangeId, @functionalIdCode, @date, @controlNumber, @version)");
             cmd.Parameters.AddWithValue("@id", functionalGroupId);
             cmd.Parameters.AddWithValue("@containerId", containerId);
             cmd.Parameters.AddWithValue("@interchangeId", interchangeId);
@@ -980,9 +759,7 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             cmd.Parameters.AddWithValue("@date", date);
             cmd.Parameters.AddWithValue("@controlNumber", controlNumber);
             cmd.Parameters.AddWithValue("@version", version);
-
             this.ExecuteCmd(cmd);
-
             return functionalGroupId;
         }
 
@@ -992,46 +769,27 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             if (controlNumber.Length > 9)
             {
                 controlNumber = controlNumber.Substring(0, 9);
-                Trace.TraceWarning(
-                    Resources.TransactionControlNumberTruncatedWarning,
-                    transaction.ControlNumber);
+                Trace.TraceWarning(Resources.TransactionControlNumberTruncatedWarning, transaction.ControlNumber);
             }
 
             var transactionSetId = this.idProvider.NextId(this.Schema, "TransactionSet");
             var containerId = this.idProvider.NextId(this.CommonDb.Schema, "Container");
-
-            var cmd = new SqlCommand(
-                this.GetContainerIdSql("ST")
-                + $"INSERT INTO [{this.Schema}].[TransactionSet] (Id, InterchangeId, FunctionalGroupId, IdentifierCode, ControlNumber)\n"
-                + "VALUES (@id, @interchangeId, @functionalGroupId, @identifierCode, @controlNumber)");
-
+            var cmd = new SqlCommand(this.GetContainerIdSql("ST") + $"INSERT INTO [{this.Schema}].[TransactionSet] (Id, InterchangeId, FunctionalGroupId, IdentifierCode, ControlNumber)\n" + "VALUES (@id, @interchangeId, @functionalGroupId, @identifierCode, @controlNumber)");
             cmd.Parameters.AddWithValue("@id", transactionSetId);
             cmd.Parameters.AddWithValue("@containerId", containerId);
             cmd.Parameters.AddWithValue("@interchangeId", interchangeId);
             cmd.Parameters.AddWithValue("@functionalGroupId", functionalGroupId);
             cmd.Parameters.AddWithValue("@identifierCode", transaction.IdentifierCode);
             cmd.Parameters.AddWithValue("@controlNumber", controlNumber);
-
             this.ExecuteCmd(cmd);
-
             return transactionSetId;
         }
 
-        private object SaveHierarchicalLoop(
-            HierarchicalLoop loop,
-            object interchangeId,
-            object transactionSetId,
-            string transactionSetCode,
-            object parentLoopId)
+        private object SaveHierarchicalLoop(HierarchicalLoop loop, object interchangeId, object transactionSetId, string transactionSetCode, object parentLoopId)
         {
             var hierarchicalLoopId = this.idProvider.NextId(this.Schema, "Loop");
             var containerId = this.idProvider.NextId(this.CommonDb.Schema, "Container");
-
-            var cmd = new SqlCommand(
-                this.GetContainerIdSql("HL")
-                + $"INSERT INTO [{this.Schema}].[Loop] (Id, ParentLoopId, InterchangeId, TransactionSetId, TransactionSetCode, SpecLoopId, LevelId, LevelCode, StartingSegmentId)\n"
-                + "VALUES (@id, @parentLoopId, @interchangeId, @transactionSetId, @transactionSetCode, @specLoopId, @levelId, @levelCode, 'HL')");
-
+            var cmd = new SqlCommand(this.GetContainerIdSql("HL") + $"INSERT INTO [{this.Schema}].[Loop] (Id, ParentLoopId, InterchangeId, TransactionSetId, TransactionSetCode, SpecLoopId, LevelId, LevelCode, StartingSegmentId)\n" + "VALUES (@id, @parentLoopId, @interchangeId, @transactionSetId, @transactionSetCode, @specLoopId, @levelId, @levelCode, 'HL')");
             cmd.Parameters.AddWithValue("@id", hierarchicalLoopId);
             cmd.Parameters.AddWithValue("@containerId", containerId);
             cmd.Parameters.AddWithValue("@parentLoopId", parentLoopId != null && parentLoopId != this.DefaultIdentityTypeValue ? parentLoopId : DBNull.Value);
@@ -1041,70 +799,39 @@ VALUES ('{1}', {2}, '{3}', '{4}', '{5}', '{6}', '{7}', {8}) ",
             cmd.Parameters.AddWithValue("@specLoopId", loop.Specification.LoopId);
             cmd.Parameters.AddWithValue("@levelId", loop.Id);
             cmd.Parameters.AddWithValue("@levelCode", loop.LevelCode);
-
             this.ExecuteCmd(cmd);
-
             return hierarchicalLoopId;
         }
 
-        private bool SegmentHasChanged(
-            DetachedSegment segment,
-            int positionInInterchange,
-            object interchangeId,
-            int? previousRevisionId)
+        private bool SegmentHasChanged(DetachedSegment segment, int positionInInterchange, object interchangeId, int? previousRevisionId)
         {
             using (var conn = new SqlConnection(this.Dsn))
             {
-                var cmd = new SqlCommand(
-                    string.Format(
-@"SELECT RevisionId, Deleted, Segment, r.RevisedBy, r.RevisionDate
+                var cmd = new SqlCommand(string.Format(@"SELECT RevisionId, Deleted, Segment, r.RevisedBy, r.RevisionDate
 FROM [{0}].Segment s
 LEFT JOIN [{1}].Revision r ON s.RevisionId = r.Id
 WHERE InterchangeId = @interchangeId AND PositionInInterchange = @positionInInterchange
-ORDER BY RevisionId DESC",
-                        this.Schema,
-                        this.CommonDb.Schema),
-                    conn);
-
+ORDER BY RevisionId DESC", this.Schema, this.CommonDb.Schema), conn);
                 cmd.Parameters.AddWithValue("@interchangeId", interchangeId);
                 cmd.Parameters.AddWithValue("@positionInInterchange", positionInInterchange);
-
                 conn.Open();
                 var reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
                     if (Convert.ToBoolean(reader["Deleted"]))
                     {
-                        throw new InvalidOperationException(
-                            string.Format(
-                                Resources.SegmentAlreadyDeletedError,
-                                segment.SegmentId,
-                                interchangeId,
-                                positionInInterchange,
-                                reader["RevisedBy"],
-                                reader["RevisionDate"]));
+                        throw new InvalidOperationException(string.Format(Resources.SegmentAlreadyDeletedError, segment.SegmentId, interchangeId, positionInInterchange, reader["RevisedBy"], reader["RevisionDate"]));
                     }
 
                     if (previousRevisionId.HasValue && Convert.ToInt64(reader["RevisionId"]) != Convert.ToInt64(previousRevisionId))
                     {
-                        throw new InvalidOperationException(
-                            string.Format(
-                                Resources.SegmentAlreadyRevisedError,
-                                segment.SegmentId,
-                                interchangeId,
-                                positionInInterchange,
-                                reader["RevisedBy"],
-                                reader["RevisionDate"]));
+                        throw new InvalidOperationException(string.Format(Resources.SegmentAlreadyRevisedError, segment.SegmentId, interchangeId, positionInInterchange, reader["RevisedBy"], reader["RevisionDate"]));
                     }
 
                     return Convert.ToString(reader["Segment"]) != segment.SegmentString;
                 }
 
-                throw new InvalidOperationException(
-                    string.Format(
-                        Resources.SegmentDoesNotExist,
-                        interchangeId,
-                        positionInInterchange));
+                throw new InvalidOperationException(string.Format(Resources.SegmentDoesNotExist, interchangeId, positionInInterchange));
             }
         }
     }
